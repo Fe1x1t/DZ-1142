@@ -1,0 +1,77 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define N 15
+#define M 15
+
+void matrix(int A[N][M])
+{
+	for (int i = 0; i < N; ++i)
+		for (int j = 0; j < M; ++j)
+			if (i == 0 || j == 0 || i % (N - 1) == 0 || j % (M - 1) == 0)
+				A[i][j] = 1;
+			else
+				A[i][j] = rand() % 2 ? rand() % 2 : 0;
+}
+
+void output(int A[N][M])
+{
+	for (int i = 0; i < N; ++i)
+	{
+		for (int j = 0; j < M; ++j)
+			printf("%d", A[i][j]);
+		printf("\n");
+	}
+
+}
+
+void mas(int A[N][M], int x, int i, int j)
+{
+
+
+	if (i < N && j < M)
+	{
+		if (A[i][j] == 0)
+		{
+			A[i][j] = x;
+			mas(A, x, i, j + 1);
+			mas(A, x, i, j - 1);
+			mas(A, x, i - 1, j);
+			mas(A, x, i + 1, j);
+
+		}
+		else if (A[i][j] == 1)
+		{
+			return;
+		}
+
+
+	}
+
+}
+
+
+int main()
+{
+
+	int A[N][M];
+	int z;
+	int x;
+	int c;
+	printf("massiv:\n");
+	matrix(A);
+	output(A);
+	printf("Vvedite chislo:");
+	scanf("%d", &z);
+	printf("Vvedite koordinati:");
+	scanf("%d", &x);
+	scanf("%d", &c);
+	printf("Massiv:\n");
+	mas(A, z, x, c);
+	output(A);
+
+	return 0;
+
+}
+
