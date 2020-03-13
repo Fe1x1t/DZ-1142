@@ -1,0 +1,57 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <malloc.h>
+#include <time.h>
+#define for_i for(int i = 0; i < n; i++)
+
+void swap(int* a, int* b)
+{
+	int z = *a;
+	*a = *b;
+	*b = z;
+
+}
+
+void sravn(int n, int* A)
+{
+	int q = 0;
+	for_i
+	{
+		for (int j = 1; j < (n - i); j++)
+		{
+			if (A[j] < A[j - 1])
+			{
+				swap(&A[j], &A[j - 1]);
+			}
+			q++;
+		}
+	}
+	printf("Kol-vo sravnenii:");
+	printf("%d\n", q);
+}
+
+
+
+int main()
+{
+	int n;
+	printf("Razmer massiva:");
+	scanf("%d", &n);
+	int* A = (int*)calloc(n, sizeof(int));
+	printf("Massiv:");
+	for_i
+	{
+	A[i] = rand() % 10;
+	printf("%d ", A[i]);
+	}
+	printf("\n");
+	sravn(n, A);
+	printf("Rezyltat:");
+	for_i
+	{
+	printf("%d ", A[i]);
+	}
+	free(A);
+}
