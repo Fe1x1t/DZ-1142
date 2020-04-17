@@ -1,0 +1,42 @@
+
+
+#include <iostream>
+
+using namespace std;
+using std::cout;
+using std::endl;
+
+class Complex 
+{
+private:
+	double re, im;
+public:
+	Complex(double r = 0, double i = 0) { re = r; im = i; }
+	Complex(const Complex &c) 
+	{
+		re = c.re;
+		im = c.im;
+	}
+	double& Re() { return re; }
+	double& Im() { return im; }
+	
+	
+	Complex operator +(const Complex &c)const
+	{
+		return Complex(re + c.re, im + c.im);
+	}
+	Complex operator -(const Complex& c)const
+	{
+		return Complex(re - c.re, im - c.im);
+	}
+	ostream & operator << (ostream& o, const Complex& c) {
+		return o << '('<< c.re << ";" << c.im << ')';
+	}
+};
+
+int main()
+{
+	Complex c(1, 2), b(1), a = c - b;
+	cout << c << endl;
+	return 0;
+}
